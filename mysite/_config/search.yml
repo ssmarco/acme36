@@ -1,0 +1,11 @@
+---
+Name: mysearch
+---
+# YAML configuration for SilverStripe
+# See http://doc.silverstripe.org/framework/en/topics/configuration
+# Caution: Indentation through two spaces, not tabs
+Acme\Search\Config:
+  indices:
+    - 'SiteTree'
+    - 'File'
+  client: 'Acme\Search\MySQL\Client'

@@ -18,9 +18,8 @@ class Page_Controller extends ContentController
      * @var array
      */
     private static $allowed_actions = array(
-        'marco',
-        'Search',
-        // 'SearchForm',
+        'SearchSolr',
+        'SearchForm',
     );
 
     public function init()
@@ -30,31 +29,32 @@ class Page_Controller extends ContentController
         // See: http://doc.silverstripe.org/framework/en/reference/requirements
     }
 
-    // /**
-    //  * Site search form MYSQL
-    //  */
-    // public function SearchForm()
-    // {
-    //     $searchText = $this->getRequest()->getVar('Search');
+    /**
+     * Site search form MYSQL
+     */
+    public function SearchForm()
+    {
+        $searchText = Convert::raw2att($this->getRequest()->getVar('Search'));
+        $searchText = $searchText ?: _t('SearchForm.SEARCH', 'Search');
 
-    //     $fields = new FieldList(
-    //         TextField::create('Search', false, $searchText)
-    //     );
-    //     $actions = new FieldList(
-    //         new FormAction('results', _t('SearchForm.GO', 'Go'))
-    //     );
+        $fields = new FieldList(
+            TextField::create('Search', false, $searchText)
+        );
+        $actions = new FieldList(
+            new FormAction('results', _t('SearchForm.GO', 'Go'))
+        );
 
-    //     $form = SearchForm::create($this, 'SearchForm', $fields, $actions);
-    //     $form->setFormAction('home/SearchForm');
+        $form = SearchForm::create($this, 'SearchForm', $fields, $actions);
+        $form->setFormAction('search/SearchForm');
 
-    //     return $form;
-    // }
+        return $form;
+    }
 
     /**
      * Solr
      * @param [type] $request [description]
      */
-    public function Search($request)
+    public function SearchSolr($request)
     {
         $query = new SearchQuery();
         $query->search($request->getVar('Search'));

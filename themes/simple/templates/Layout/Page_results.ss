@@ -5,6 +5,8 @@
         <p class="searchQuery">You searched for &quot;{$Query}&quot;</p>
     <% end_if %>
 
+    $Form
+
     <% if $Results %>
     <ul id="SearchResults">
         <% loop $Results %>
@@ -27,6 +29,7 @@
     </ul>
     <% else %>
     <p>Sorry, your search query did not return any results.</p>
+    <p>$Warning</p>
     <% end_if %>
 
     <% if $Results.MoreThanOnePage %>
