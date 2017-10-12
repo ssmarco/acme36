@@ -1,0 +1,24 @@
+<phpunit bootstrap="framework/tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="unit">
+            <directory>mysite/tests/unit</directory>
+        </testsuite>
+        <testsuite name="e2e">
+            <directory>mysite/tests/e2e</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener class="SS_TestListener" file="framework/dev/TestListener.php" />
+    </listeners>
+
+    <logging>
+        <log type="junit" target="/tmp/forsyth-junit.xml" logIncompleteSkipped="true" />
+    </logging>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">mysite/code</directory>
+        </whitelist>
+    </filter>
+</phpunit>

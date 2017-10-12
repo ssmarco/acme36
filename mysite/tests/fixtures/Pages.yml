@@ -1,0 +1,22 @@
+Page:
+  home:
+    Title: 'Home Page'
+    URLSegment: home
+    ShowInSearch: 1
+    Content: 'Home homepage content1 code hackday, the quick brown fox.'
+  about:
+    Title: 'About Page'
+    URLSegment: about
+    ShowInSearch: 1
+    Content: 'About Us content2 code hackday, jumps over the lazy dog.'
+  contact:
+    Title: 'Contact Page'
+    URLSegment: contact
+    ShowInSearch: 1
+    Content: 'Contact Us content3 hackday, cozy lummox gives smart squid.'
+SearchResultsPage:
+  searchPage:
+    Title: 'Search Results'
+    URLSegment: search
+    ShowInSearch: 1
+    Content: 'Search our website, who asked for job pen.'

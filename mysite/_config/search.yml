@@ -5,6 +5,17 @@ Name: mysearch
 # See http://doc.silverstripe.org/framework/en/topics/configuration
 # Caution: Indentation through two spaces, not tabs
 Acme\Search\Config:
+  source:
+    - 'Algolia'
+    - 'Solr'
+    - 'MySQL'
+  Algolia:
+    client: 'Acme\Search\Algolia\Client'
+    search_key: '690e604af90ed9c1ec269db43064d4da'
+  Solr:
+    client: 'Acme\Search\Solr\Client'
+  MySQL:
+    client: 'Acme\Search\MySQL\Client'
   indices:
     - 'SiteTree'
     - 'File'
