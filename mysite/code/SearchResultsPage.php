@@ -83,6 +83,10 @@ class SearchResultsPage_Controller extends Page_Controller
         $data['Query'] = DBField::create_field('Text', $form->getSearchQuery());
         $data['Title'] = _t('SearchForm.SearchResults', 'Search Results');
         $data['Warning'] = "An error occured.";
+        $start = (int) $request->getVar('start');
+        $options = array(
+            'start' => ($start > 0) ? $start : 0
+        );
 
         $client = SearchFactory::create(
             SearchConfig::create(),
@@ -90,7 +94,10 @@ class SearchResultsPage_Controller extends Page_Controller
         );
 
         try {
-            $data['Results'] = $client->query($request->getVar('Search'));
+            $data['Results'] = $client->query(
+                $request->getVar('Search'),
+                $options
+            );
             $data['Warning'] = '';
         } catch (\Exception $exception) {
             $data['Warning'] .= ' ' . $exception->getMessage();

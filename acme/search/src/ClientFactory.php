@@ -13,7 +13,9 @@ class ClientFactory extends \Object implements ClientInterface
     {
         $this->config = $config;
         $this->controller = $controller;
-        $client = $this->config->details()['client'];
+        $config = $this->config->details();
+        $defaultClient = $config['default'];
+        $client = $config['values'][$defaultClient]['client'];
 
         $this->client = \Object::create($client, $this->config, $this->controller);
     }

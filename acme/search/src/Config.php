@@ -17,9 +17,19 @@ class Config extends \Object implements ConfigInterface
     public function details()
     {
         $config = \Config::inst();
+        $source = $config->get(self::class, 'source');
+        $values = [];
+        foreach ($source as $key) {
+            $values[$key] = $config->get(self::class, $key);
+        }
 
         return [
-            'client' => $config->get(self::class, 'client'),
+            'values'  => $values,
+            'source'  => $source,
+            'default' => reset($source),
+            'page_length'  => $config->get(self::class, 'page_length'),
+            'page_number'  => $config->get(self::class, 'page_number'),
+            'client'  => $config->get(self::class, 'client'),
             'indices' => $config->get(self::class, 'indices'),
         ];
     }
